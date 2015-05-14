@@ -1,0 +1,908 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MessagesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="MessagesModelStoreContainer">
+          <EntitySet Name="AccessTokens" EntityType="MessagesModel.Store.AccessTokens" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AdminAccount" EntityType="MessagesModel.Store.AdminAccount" store:Type="Tables" store:Schema="dbo" store:Name="AdminAccount">
+            <DefiningQuery>SELECT 
+      [AdminAccount].[Username] AS [Username], 
+      [AdminAccount].[Password] AS [Password]
+      FROM [dbo].[AdminAccount] AS [AdminAccount]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="College" EntityType="MessagesModel.Store.College" store:Type="Tables" store:Schema="dbo" store:Name="College">
+            <DefiningQuery>SELECT 
+      [College].[CollegeID] AS [CollegeID], 
+      [College].[CollegeName] AS [CollegeName]
+      FROM [dbo].[College] AS [College]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Department" EntityType="MessagesModel.Store.Department" store:Type="Tables" store:Schema="dbo" store:Name="Department">
+            <DefiningQuery>SELECT 
+      [Department].[CollegeID] AS [CollegeID], 
+      [Department].[DepartmentID] AS [DepartmentID], 
+      [Department].[DepartmentName] AS [DepartmentName]
+      FROM [dbo].[Department] AS [Department]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DownloadableForms" EntityType="MessagesModel.Store.DownloadableForms" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="InboundSMS" EntityType="MessagesModel.Store.InboundSMS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LoanAmountMatrix" EntityType="MessagesModel.Store.LoanAmountMatrix" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LoanApplication" EntityType="MessagesModel.Store.LoanApplication" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LoanTypes" EntityType="MessagesModel.Store.LoanTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NewsAndAnnouncement" EntityType="MessagesModel.Store.NewsAndAnnouncement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Payments" EntityType="MessagesModel.Store.Payments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RegDump" EntityType="MessagesModel.Store.RegDump" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RelativeEmployee" EntityType="MessagesModel.Store.RelativeEmployee" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ShareCapital" EntityType="MessagesModel.Store.ShareCapital" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ShareCapitalPayments" EntityType="MessagesModel.Store.ShareCapitalPayments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UnconfirmedLoan" EntityType="MessagesModel.Store.UnconfirmedLoan" store:Type="Tables" store:Schema="dbo" store:Name="UnconfirmedLoan">
+            <DefiningQuery>SELECT 
+      [UnconfirmedLoan].[TransactionID] AS [TransactionID], 
+      [UnconfirmedLoan].[ConfirmedByMaker] AS [ConfirmedByMaker], 
+      [UnconfirmedLoan].[ConfirmedByCoMaker] AS [ConfirmedByCoMaker], 
+      [UnconfirmedLoan].[DateFiled] AS [DateFiled], 
+      [UnconfirmedLoan].[ConfirmCodeMakerSMS] AS [ConfirmCodeMakerSMS], 
+      [UnconfirmedLoan].[ConfirmCodeCoMakerSMS] AS [ConfirmCodeCoMakerSMS], 
+      [UnconfirmedLoan].[ConfirmCodeMakerEmail] AS [ConfirmCodeMakerEmail], 
+      [UnconfirmedLoan].[ConfirmCodeCoMakerEmail] AS [ConfirmCodeCoMakerEmail], 
+      [UnconfirmedLoan].[ConfirmedByCoMaker2] AS [ConfirmedByCoMaker2], 
+      [UnconfirmedLoan].[ConfirmCodeCoMaker2SMS] AS [ConfirmCodeCoMaker2SMS], 
+      [UnconfirmedLoan].[ConfirmCodeCoMaker2Email] AS [ConfirmCodeCoMaker2Email]
+      FROM [dbo].[UnconfirmedLoan] AS [UnconfirmedLoan]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UnconfirmedUsers" EntityType="MessagesModel.Store.UnconfirmedUsers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserBeneficiaries" EntityType="MessagesModel.Store.UserBeneficiaries" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserDetail" EntityType="MessagesModel.Store.UserDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="MessagesModel.Store.Users" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="AccessTokens">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="AccessToken" Type="nvarchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Messages.dbo.AdminAccount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="AdminAccount">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Messages.dbo.College' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="College">
+          <Key>
+            <PropertyRef Name="CollegeID" />
+            <PropertyRef Name="CollegeName" />
+          </Key>
+          <Property Name="CollegeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CollegeName" Type="nvarchar" Nullable="false" MaxLength="25" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Messages.dbo.Department' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="CollegeID" />
+            <PropertyRef Name="DepartmentID" />
+            <PropertyRef Name="DepartmentName" />
+          </Key>
+          <Property Name="CollegeID" Type="int" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DownloadableForms">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FormText" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="FormUrl" Type="nvarchar" Nullable="false" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="InboundSMS">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MsgDateTime" Type="datetime" />
+          <Property Name="DestinationAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="MessageId" Type="nvarchar" MaxLength="255" />
+          <Property Name="Message" Type="nvarchar" MaxLength="255" />
+          <Property Name="ResourceURL" Type="nvarchar" MaxLength="255" />
+          <Property Name="SenderAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="Timestamp" Type="datetime" />
+          <Property Name="IsRead" Type="bit" />
+        </EntityType>
+        <EntityType Name="LoanAmountMatrix">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LoanType" Type="int" Nullable="false" />
+          <Property Name="LoanAmount" Type="float" Nullable="false" />
+          <Property Name="RequiredShareCapital" Type="float" Nullable="false" />
+          <Property Name="Interest" Type="float" Nullable="false" />
+          <Property Name="MonthsPayable" Type="int" Nullable="false" />
+          <Property Name="ProcessingFee" Type="float" />
+        </EntityType>
+        <EntityType Name="LoanApplication">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="int" Nullable="false" />
+          <Property Name="EmpNo" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="CoMakerEmpNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="TypeOfLoan" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Reason" Type="text" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="NoOfMonths" Type="int" Nullable="false" />
+          <Property Name="Confirmed" Type="bit" />
+          <Property Name="DateApproved" Type="date" />
+          <Property Name="DateDue" Type="date" />
+          <Property Name="CoMaker2EmpNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Done" Type="bit" />
+          <Property Name="Declined" Type="bit" />
+          <Property Name="Balance" Type="money" />
+          <Property Name="PayslipPath" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="LoanTypes">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LoanType" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="NewsAndAnnouncement">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateOfPost" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionID" Type="int" Nullable="false" />
+          <Property Name="PayAmount" Type="float" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+          <Property Name="PayDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RegDump">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Data" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RelativeEmployee">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="RelativeEmpNo" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ShareCapital">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ShareCapital" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShareCapitalPayments">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="DatePaid" Type="datetime" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Messages.dbo.UnconfirmedLoan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="UnconfirmedLoan">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="DateFiled" />
+          </Key>
+          <Property Name="TransactionID" Type="int" Nullable="false" />
+          <Property Name="ConfirmedByMaker" Type="bit" />
+          <Property Name="ConfirmedByCoMaker" Type="bit" />
+          <Property Name="DateFiled" Type="date" Nullable="false" />
+          <Property Name="ConfirmCodeMakerSMS" Type="nvarchar" MaxLength="6" />
+          <Property Name="ConfirmCodeCoMakerSMS" Type="nvarchar" MaxLength="6" />
+          <Property Name="ConfirmCodeMakerEmail" Type="nvarchar" MaxLength="35" />
+          <Property Name="ConfirmCodeCoMakerEmail" Type="nvarchar" MaxLength="35" />
+          <Property Name="ConfirmedByCoMaker2" Type="bit" />
+          <Property Name="ConfirmCodeCoMaker2SMS" Type="nvarchar" MaxLength="6" />
+          <Property Name="ConfirmCodeCoMaker2Email" Type="nvarchar" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="UnconfirmedUsers">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="DateRegistered" Type="date" Nullable="false" />
+          <Property Name="ConfirmationCode" Type="nvarchar" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="UserBeneficiaries">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="BeneficiaryName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="DOB" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="College" Type="nvarchar" MaxLength="30" />
+          <Property Name="Dept" Type="nvarchar" MaxLength="30" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" />
+          <Property Name="DateConfirmed" Type="date" />
+          <Property Name="MemberStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateHired" Type="date" />
+          <Property Name="Picture" Type="nvarchar(max)" />
+          <Property Name="ATMAccountNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="TINNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="SSSNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="CivilStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherOccupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherOccupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="LegalSpouse" Type="nvarchar" MaxLength="50" />
+          <Property Name="SpouseEmployer" Type="nvarchar" MaxLength="50" />
+          <Property Name="BusinessName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BusinessAddress" Type="nvarchar" MaxLength="150" />
+          <Property Name="OtherSourceOfIncome" Type="nvarchar" MaxLength="250" />
+          <Property Name="EmergencyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmergencyAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmergencyNumber" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="UserType" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="70" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="College" Type="nvarchar" MaxLength="30" />
+          <Property Name="Dept" Type="nvarchar" MaxLength="30" />
+          <Property Name="PhoneNumber" Type="nvarchar" Nullable="false" MaxLength="13" />
+          <Property Name="DateConfirmed" Type="date" />
+          <Property Name="MemberStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateHired" Type="date" />
+          <Property Name="Picture" Type="nvarchar(max)" />
+          <Property Name="ATMAccountNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="TINNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="SSSNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="CivilStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherOccupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherOccupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="LegalSpouse" Type="nvarchar" MaxLength="50" />
+          <Property Name="SpouseEmployer" Type="nvarchar" MaxLength="50" />
+          <Property Name="BusinessName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BusinessAddress" Type="nvarchar" MaxLength="150" />
+          <Property Name="OtherSourceOfIncome" Type="nvarchar" MaxLength="250" />
+          <Property Name="EmergencyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmergencyAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmergencyNumber" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'Messages.dbo.MSGS' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="MSGS">
+        <Property Name="ID" Type="nvarchar" MaxLength="50" />
+        <Property Name="Source" Type="nvarchar" MaxLength="50" />
+        <Property Name="Msg" Type="nvarchar(max)" />
+        <Property Name="UDH" Type="nvarchar" MaxLength="50" />
+        <Property Name="DateReceived" Type="datetime" />
+      </EntityType>-->
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MessagesModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MessagesEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="AccessTokens" EntityType="MessagesModel.AccessToken" />
+          <EntitySet Name="AdminAccounts" EntityType="MessagesModel.AdminAccount" />
+          <EntitySet Name="Colleges" EntityType="MessagesModel.College" />
+          <EntitySet Name="Departments" EntityType="MessagesModel.Department" />
+          <EntitySet Name="DownloadableForms" EntityType="MessagesModel.DownloadableForm" />
+          <EntitySet Name="InboundSMS" EntityType="MessagesModel.InboundSM" />
+          <EntitySet Name="LoanAmountMatrices" EntityType="MessagesModel.LoanAmountMatrix" />
+          <EntitySet Name="LoanApplications" EntityType="MessagesModel.LoanApplication" />
+          <EntitySet Name="LoanTypes" EntityType="MessagesModel.LoanType" />
+          <EntitySet Name="NewsAndAnnouncements" EntityType="MessagesModel.NewsAndAnnouncement" />
+          <EntitySet Name="Payments" EntityType="MessagesModel.Payment" />
+          <EntitySet Name="RegDumps" EntityType="MessagesModel.RegDump" />
+          <EntitySet Name="RelativeEmployees" EntityType="MessagesModel.RelativeEmployee" />
+          <EntitySet Name="ShareCapitals" EntityType="MessagesModel.ShareCapital" />
+          <EntitySet Name="ShareCapitalPayments" EntityType="MessagesModel.ShareCapitalPayment" />
+          <EntitySet Name="UnconfirmedLoans" EntityType="MessagesModel.UnconfirmedLoan" />
+          <EntitySet Name="UnconfirmedUsers" EntityType="MessagesModel.UnconfirmedUser" />
+          <EntitySet Name="UserBeneficiaries" EntityType="MessagesModel.UserBeneficiary" />
+          <EntitySet Name="UserDetails" EntityType="MessagesModel.UserDetail" />
+          <EntitySet Name="Users" EntityType="MessagesModel.User" />
+        </EntityContainer>
+        <EntityType Name="AccessToken">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="AccessToken1" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="AdminAccount">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="College">
+          <Key>
+            <PropertyRef Name="CollegeID" />
+            <PropertyRef Name="CollegeName" />
+          </Key>
+          <Property Name="CollegeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CollegeName" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="CollegeID" />
+            <PropertyRef Name="DepartmentID" />
+            <PropertyRef Name="DepartmentName" />
+          </Key>
+          <Property Name="CollegeID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DownloadableForm">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FormText" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="FormUrl" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="InboundSM">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="MsgDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DestinationAddress" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="MessageId" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Message" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ResourceURL" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="SenderAddress" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
+          <Property Name="IsRead" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="LoanAmountMatrix">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LoanType" Type="Int32" Nullable="false" />
+          <Property Name="LoanAmount" Type="Double" Nullable="false" />
+          <Property Name="RequiredShareCapital" Type="Double" Nullable="false" />
+          <Property Name="Interest" Type="Double" Nullable="false" />
+          <Property Name="MonthsPayable" Type="Int32" Nullable="false" />
+          <Property Name="ProcessingFee" Type="Double" />
+        </EntityType>
+        <EntityType Name="LoanApplication">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" />
+          <Property Name="EmpNo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="CoMakerEmpNo" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="TypeOfLoan" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Reason" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="NoOfMonths" Type="Int32" Nullable="false" />
+          <Property Name="Confirmed" Type="Boolean" />
+          <Property Name="DateApproved" Type="DateTime" Precision="0" />
+          <Property Name="DateDue" Type="DateTime" Precision="0" />
+          <Property Name="CoMaker2EmpNo" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Done" Type="Boolean" />
+          <Property Name="Declined" Type="Boolean" />
+          <Property Name="Balance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PayslipPath" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="LoanType">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LoanType1" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="NewsAndAnnouncement">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateOfPost" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionID" Type="Int32" Nullable="false" />
+          <Property Name="PayAmount" Type="Double" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="PayDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RegDump">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Data" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="RelativeEmployee">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="RelativeEmpNo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ShareCapital">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ShareCapital1" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShareCapitalPayment">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DatePaid" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnconfirmedLoan">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="DateFiled" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" />
+          <Property Name="ConfirmedByMaker" Type="Boolean" />
+          <Property Name="ConfirmedByCoMaker" Type="Boolean" />
+          <Property Name="DateFiled" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ConfirmCodeMakerSMS" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
+          <Property Name="ConfirmCodeCoMakerSMS" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
+          <Property Name="ConfirmCodeMakerEmail" Type="String" MaxLength="35" Unicode="true" FixedLength="false" />
+          <Property Name="ConfirmCodeCoMakerEmail" Type="String" MaxLength="35" Unicode="true" FixedLength="false" />
+          <Property Name="ConfirmedByCoMaker2" Type="Boolean" />
+          <Property Name="ConfirmCodeCoMaker2SMS" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
+          <Property Name="ConfirmCodeCoMaker2Email" Type="String" MaxLength="35" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UnconfirmedUser">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="DateRegistered" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ConfirmationCode" Type="String" MaxLength="35" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserBeneficiary">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="BeneficiaryName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="College" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Dept" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="DateConfirmed" Type="DateTime" Precision="0" />
+          <Property Name="MemberStatus" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DateHired" Type="DateTime" Precision="0" />
+          <Property Name="Picture" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ATMAccountNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TINNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SSSNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="CivilStatus" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="FatherName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FatherOccupation" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MotherName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MotherOccupation" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LegalSpouse" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SpouseEmployer" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="BusinessName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="BusinessAddress" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="OtherSourceOfIncome" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="EmergencyName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmergencyAddress" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmergencyNumber" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="70" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="College" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Dept" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="13" Unicode="true" FixedLength="false" />
+          <Property Name="DateConfirmed" Type="DateTime" Precision="0" />
+          <Property Name="MemberStatus" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DateHired" Type="DateTime" Precision="0" />
+          <Property Name="Picture" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ATMAccountNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TINNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SSSNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="CivilStatus" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="FatherName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FatherOccupation" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MotherName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MotherOccupation" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LegalSpouse" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SpouseEmployer" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="BusinessName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="BusinessAddress" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="OtherSourceOfIncome" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="EmergencyName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmergencyAddress" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmergencyNumber" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MessagesModelStoreContainer" CdmEntityContainer="MessagesEntities">
+          <EntitySetMapping Name="AccessTokens">
+            <EntityTypeMapping TypeName="MessagesModel.AccessToken">
+              <MappingFragment StoreEntitySet="AccessTokens">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+                <ScalarProperty Name="AccessToken1" ColumnName="AccessToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminAccounts">
+            <EntityTypeMapping TypeName="MessagesModel.AdminAccount">
+              <MappingFragment StoreEntitySet="AdminAccount">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colleges">
+            <EntityTypeMapping TypeName="MessagesModel.College">
+              <MappingFragment StoreEntitySet="College">
+                <ScalarProperty Name="CollegeID" ColumnName="CollegeID" />
+                <ScalarProperty Name="CollegeName" ColumnName="CollegeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="MessagesModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="CollegeID" ColumnName="CollegeID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DownloadableForms">
+            <EntityTypeMapping TypeName="MessagesModel.DownloadableForm">
+              <MappingFragment StoreEntitySet="DownloadableForms">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="FormText" ColumnName="FormText" />
+                <ScalarProperty Name="FormUrl" ColumnName="FormUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InboundSMS">
+            <EntityTypeMapping TypeName="MessagesModel.InboundSM">
+              <MappingFragment StoreEntitySet="InboundSMS">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="MsgDateTime" ColumnName="MsgDateTime" />
+                <ScalarProperty Name="DestinationAddress" ColumnName="DestinationAddress" />
+                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ResourceURL" ColumnName="ResourceURL" />
+                <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoanAmountMatrices">
+            <EntityTypeMapping TypeName="MessagesModel.LoanAmountMatrix">
+              <MappingFragment StoreEntitySet="LoanAmountMatrix">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="LoanType" ColumnName="LoanType" />
+                <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+                <ScalarProperty Name="RequiredShareCapital" ColumnName="RequiredShareCapital" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="MonthsPayable" ColumnName="MonthsPayable" />
+                <ScalarProperty Name="ProcessingFee" ColumnName="ProcessingFee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoanApplications">
+            <EntityTypeMapping TypeName="MessagesModel.LoanApplication">
+              <MappingFragment StoreEntitySet="LoanApplication">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+                <ScalarProperty Name="CoMakerEmpNo" ColumnName="CoMakerEmpNo" />
+                <ScalarProperty Name="TypeOfLoan" ColumnName="TypeOfLoan" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="NoOfMonths" ColumnName="NoOfMonths" />
+                <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+                <ScalarProperty Name="DateApproved" ColumnName="DateApproved" />
+                <ScalarProperty Name="DateDue" ColumnName="DateDue" />
+                <ScalarProperty Name="CoMaker2EmpNo" ColumnName="CoMaker2EmpNo" />
+                <ScalarProperty Name="Done" ColumnName="Done" />
+                <ScalarProperty Name="Declined" ColumnName="Declined" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="PayslipPath" ColumnName="PayslipPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoanTypes">
+            <EntityTypeMapping TypeName="MessagesModel.LoanType">
+              <MappingFragment StoreEntitySet="LoanTypes">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="LoanType1" ColumnName="LoanType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsAndAnnouncements">
+            <EntityTypeMapping TypeName="MessagesModel.NewsAndAnnouncement">
+              <MappingFragment StoreEntitySet="NewsAndAnnouncement">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="DateOfPost" ColumnName="DateOfPost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="MessagesModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="PayAmount" ColumnName="PayAmount" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="PayDate" ColumnName="PayDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegDumps">
+            <EntityTypeMapping TypeName="MessagesModel.RegDump">
+              <MappingFragment StoreEntitySet="RegDump">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RelativeEmployees">
+            <EntityTypeMapping TypeName="MessagesModel.RelativeEmployee">
+              <MappingFragment StoreEntitySet="RelativeEmployee">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+                <ScalarProperty Name="RelativeEmpNo" ColumnName="RelativeEmpNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShareCapitals">
+            <EntityTypeMapping TypeName="MessagesModel.ShareCapital">
+              <MappingFragment StoreEntitySet="ShareCapital">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+                <ScalarProperty Name="ShareCapital1" ColumnName="ShareCapital" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShareCapitalPayments">
+            <EntityTypeMapping TypeName="MessagesModel.ShareCapitalPayment">
+              <MappingFragment StoreEntitySet="ShareCapitalPayments">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+                <ScalarProperty Name="DatePaid" ColumnName="DatePaid" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnconfirmedLoans">
+            <EntityTypeMapping TypeName="MessagesModel.UnconfirmedLoan">
+              <MappingFragment StoreEntitySet="UnconfirmedLoan">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="ConfirmedByMaker" ColumnName="ConfirmedByMaker" />
+                <ScalarProperty Name="ConfirmedByCoMaker" ColumnName="ConfirmedByCoMaker" />
+                <ScalarProperty Name="DateFiled" ColumnName="DateFiled" />
+                <ScalarProperty Name="ConfirmCodeMakerSMS" ColumnName="ConfirmCodeMakerSMS" />
+                <ScalarProperty Name="ConfirmCodeCoMakerSMS" ColumnName="ConfirmCodeCoMakerSMS" />
+                <ScalarProperty Name="ConfirmCodeMakerEmail" ColumnName="ConfirmCodeMakerEmail" />
+                <ScalarProperty Name="ConfirmCodeCoMakerEmail" ColumnName="ConfirmCodeCoMakerEmail" />
+                <ScalarProperty Name="ConfirmedByCoMaker2" ColumnName="ConfirmedByCoMaker2" />
+                <ScalarProperty Name="ConfirmCodeCoMaker2SMS" ColumnName="ConfirmCodeCoMaker2SMS" />
+                <ScalarProperty Name="ConfirmCodeCoMaker2Email" ColumnName="ConfirmCodeCoMaker2Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnconfirmedUsers">
+            <EntityTypeMapping TypeName="MessagesModel.UnconfirmedUser">
+              <MappingFragment StoreEntitySet="UnconfirmedUsers">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+                <ScalarProperty Name="DateRegistered" ColumnName="DateRegistered" />
+                <ScalarProperty Name="ConfirmationCode" ColumnName="ConfirmationCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserBeneficiaries">
+            <EntityTypeMapping TypeName="MessagesModel.UserBeneficiary">
+              <MappingFragment StoreEntitySet="UserBeneficiaries">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+                <ScalarProperty Name="BeneficiaryName" ColumnName="BeneficiaryName" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="MessagesModel.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetail">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="College" ColumnName="College" />
+                <ScalarProperty Name="Dept" ColumnName="Dept" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DateConfirmed" ColumnName="DateConfirmed" />
+                <ScalarProperty Name="MemberStatus" ColumnName="MemberStatus" />
+                <ScalarProperty Name="DateHired" ColumnName="DateHired" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="ATMAccountNo" ColumnName="ATMAccountNo" />
+                <ScalarProperty Name="TINNo" ColumnName="TINNo" />
+                <ScalarProperty Name="SSSNo" ColumnName="SSSNo" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CivilStatus" ColumnName="CivilStatus" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="FatherOccupation" ColumnName="FatherOccupation" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="MotherOccupation" ColumnName="MotherOccupation" />
+                <ScalarProperty Name="LegalSpouse" ColumnName="LegalSpouse" />
+                <ScalarProperty Name="SpouseEmployer" ColumnName="SpouseEmployer" />
+                <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
+                <ScalarProperty Name="BusinessAddress" ColumnName="BusinessAddress" />
+                <ScalarProperty Name="OtherSourceOfIncome" ColumnName="OtherSourceOfIncome" />
+                <ScalarProperty Name="EmergencyName" ColumnName="EmergencyName" />
+                <ScalarProperty Name="EmergencyAddress" ColumnName="EmergencyAddress" />
+                <ScalarProperty Name="EmergencyNumber" ColumnName="EmergencyNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MessagesModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="College" ColumnName="College" />
+                <ScalarProperty Name="Dept" ColumnName="Dept" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DateConfirmed" ColumnName="DateConfirmed" />
+                <ScalarProperty Name="MemberStatus" ColumnName="MemberStatus" />
+                <ScalarProperty Name="DateHired" ColumnName="DateHired" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="ATMAccountNo" ColumnName="ATMAccountNo" />
+                <ScalarProperty Name="TINNo" ColumnName="TINNo" />
+                <ScalarProperty Name="SSSNo" ColumnName="SSSNo" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CivilStatus" ColumnName="CivilStatus" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="FatherOccupation" ColumnName="FatherOccupation" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="MotherOccupation" ColumnName="MotherOccupation" />
+                <ScalarProperty Name="LegalSpouse" ColumnName="LegalSpouse" />
+                <ScalarProperty Name="SpouseEmployer" ColumnName="SpouseEmployer" />
+                <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
+                <ScalarProperty Name="BusinessAddress" ColumnName="BusinessAddress" />
+                <ScalarProperty Name="OtherSourceOfIncome" ColumnName="OtherSourceOfIncome" />
+                <ScalarProperty Name="EmergencyName" ColumnName="EmergencyName" />
+                <ScalarProperty Name="EmergencyAddress" ColumnName="EmergencyAddress" />
+                <ScalarProperty Name="EmergencyNumber" ColumnName="EmergencyNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
