@@ -89,6 +89,7 @@
     <Compile Include="LoanType.cs">
       <DependentUpon>CoopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Meta\CollegeMeta.cs" />
     <Compile Include="NewsAndAnnouncement.cs">
       <DependentUpon>CoopModel.tt</DependentUpon>
     </Compile>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Coop.Mvc.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -36,7 +37,7 @@ namespace Coop.Mvc.Web.Controllers
         // POST: /College/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(College c)
         {
             try
             {

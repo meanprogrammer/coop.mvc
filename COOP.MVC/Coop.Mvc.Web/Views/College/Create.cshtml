@@ -1,0 +1,35 @@
+﻿@model Coop.Mvc.Entity.College
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="row">
+        <div class="col-md-6">
+            @Html.LabelFor(model => model.CollegeName)
+            @Html.TextBoxFor(model => model.CollegeName, new { @class = "form-control input-md" })
+            @Html.ValidationMessageFor(model => model.CollegeName)
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input type="submit" value="Create" class="btn btn-md btn-primary" />
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
